@@ -5,7 +5,7 @@ import APIFunctionality from '../utils/apiFunctionality.js';
 
 //1) creating Products
 export const createProducts = handleAsyncError(async(req, res, next) => {
-    // console.log(req.body); 
+    req.body.user = req.user.id; 
     const product = await Product.create(req.body)
     res.status(201).json({
         success: true, 
@@ -94,4 +94,112 @@ export const getSingleProduct = handleAsyncError(async (req, res,next) => {
         success: true,
         product
     });
-})
+}) 
+
+
+// 6 Creating and upkdating review 
+export const createReviewForProduct = handleAsyncError(async (req, res, next) => {
+    const { rating, comment, productId } = req.body;
+
+    if (!productId) {
+        return next(new HandleError("ProductId missing", 400));
+    }
+
+    const product = await Product.findById(productId);
+
+    if (!product) {
+        return next(new HandleError("Product not found", 404));
+    }
+
+    const reviewExist = product.reviews.find(
+        r => r.user.toString() === req.user.id.toString()
+    );
+
+    if (reviewExist) {
+        product.reviews.forEach(r => {
+            if (r.user.toString() === req.user.id.toString()) {
+                r.rating = Number(rating);
+                r.comment = comment;
+            }
+        });
+    } else {
+        product.reviews.push({
+            user: req.user._id,
+            name: req.user.name,
+            rating: Number(rating),
+            comment
+        });
+    }
+    let sum = 0;
+    product.reviews.forEach(review => {
+        sum += Number(review.rating)
+    })
+    product.ratings = product.reviews.length > 0 ? sum / product.reviews.length : 0
+
+    await product.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true,
+        product
+    });
+});
+
+
+//7 Getting Reviews
+export const getProduceReviews = handleAsyncError(async (req, res, next) => {
+        const product = await Product.findById(req.query.id);
+        if(!product)
+        {
+            return next(new HandleError("Product not found", 400))
+        }
+        res.status(200).json({
+            success:true, 
+            reviews:product.reviews
+        })
+});
+
+
+//8 Delete Product Review 
+export const deleteReview = handleAsyncError(async (req, res, next) => {
+    const product = await Product.findById(req.query.productId);
+    if (!product) {
+        return next(new HandleError("Product not found", 400))
+    }
+    const reviews = product.reviews.filter(review =>review._id.toString()!==req.query.id.toString())
+    let sum = 0;
+    reviews.forEach(review=>{
+        sum += review.rating
+    })
+    const ratings = sum/reviews.length>0?sum/reviews.length:0;
+    const numOfReviews = reviews.length;
+    await Product.findByIdAndUpdate(req.query.productId, {
+        reviews,
+        ratings, 
+        numOfReviews
+    },{
+          new:true, 
+          runValidators:true
+    })
+    res.status(200).json({
+        success:true, 
+        message: "Review Deleted Succesfully"
+    }) 
+});
+
+
+
+
+
+// 9 Admin -  Getting all products 
+export const getAdminProducts = handleAsyncError(async(req, res, next)=>{
+    const products = await Product.find();
+    res.status(200).json({
+        success:true, 
+        products
+    })
+}) 
+
+
+
+
+ 
