@@ -1,0 +1,46 @@
+
+  .star {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    color: var(--text-secondary);
+   
+  }
+  
+  .star.filled {
+    /* color: var(--primary-main);  */
+    color: #e6db0c;
+  }
+  
+  .star.empty {
+    color: var(--text-secondary); 
+  }
+  
+  .star:hover {
+    transform: scale(1.2); 
+    /* color: var(--primary-main);  */
+    color: #e6db0c;
+  } 
+  
+  .productCardSpan {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-left: 0.5rem;
+  }
+  
+     .add-to-cart {
+       background-color: #6F5A7E;
+       color: #ffffff;
+     }
+  
+     .rating_container i,
+     .rating_container span {
+       color: #6F5A7E;
+     }
+
+         .fa-star,
+         .fa-star-half-alt {
+           color: #6F5A7E;
+         }
+
+

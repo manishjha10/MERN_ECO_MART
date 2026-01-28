@@ -27,7 +27,7 @@ router.route("/admin/product/create").post(verifyUserAuth, roleBasedAccess("admi
 
 
 
-router.route("admin/product/:id")
+router.route("/admin/product/:id")
     .put(verifyUserAuth, roleBasedAccess("admin") ,updateProduct)
     .delete(verifyUserAuth, roleBasedAccess("admin") ,deleteProduct);
 
