@@ -1,6 +1,18 @@
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import app from "./app.js";
+import { connectMongoDatabase } from "./config/db.js";
+import { log } from "console";
+import { v2 as cloudinary } from 'cloudinary';
+import Razorpay from 'razorpay'; 
+
+
+
+if (process.env.NODE_ENV !== 'PRODUCTION')
+{
+    dotenv.config({ path: "./config/config.env" });
+}
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -19,11 +31,7 @@ dotenv.config({
 //     dotenv.config({ path: "./config/config.env" });
 // }
 
-import app from "./app.js";
-import { connectMongoDatabase } from "./config/db.js";
-import { log } from "console";
-import {v2 as cloudinary} from 'cloudinary'; 
-import Razorpay from 'razorpay'; 
+
 
 connectMongoDatabase();
 

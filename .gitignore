@@ -1,14 +1,13 @@
 # Node dependencies
-node_modules
+/node_modules
+/frontend/node_modules
 
 # Frontend build output
 /frontend/dist
-dist
-dist-ssr
 
 # Environment variables
 /backend/config/config.env
-.env
+
 
 # Logs
 logs

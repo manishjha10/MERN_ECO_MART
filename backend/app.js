@@ -96,11 +96,14 @@ app.use("/api/v1", order);
 app.use("/api/v1", payment);
 app.use("/api/v1", contact);
 
+
 // //Serve static files
-// app.use(express.static(path.join(_dirname,'../frontend/dist')));
-// app.get("*", (_,res)=>{
-//     res.sendFile(path.resolve(_dirname, '../frontend/dist/index.html'))
-// }) 
+app.use(express.static(path.join(__dirname,'../frontend/dist')));
+app.use((req, res) => {
+        res.sendFile(
+            path.resolve(__dirname, '../frontend/dist/index.html')
+        );
+    });
 
 // =======================
 // SERVE FRONTEND (PROD)
