@@ -6,10 +6,10 @@
   "author": "",
   "type": "module",
   "main": "server.js",
-  "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "build":"npm install && npm run build --prefix frontend"
+ "scripts": {
+  "start": "node backend/server.js",
+  "dev": "nodemon backend/server.js",
+  "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
