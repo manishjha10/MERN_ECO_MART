@@ -106,14 +106,14 @@ app.use("/api/v1", contact);
 // SERVE FRONTEND (PROD)
 // =======================
 // Serve frontend
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
+// app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-app.use((req, res) => {
-    res.sendFile(
-        path.resolve(__dirname, '../frontend/dist/index.html')
-    );
-});
-console.log("NODE_ENV =", process.env.NODE_ENV);
+// app.use((req, res) => {
+//     res.sendFile(
+//         path.resolve(__dirname, '../frontend/dist/index.html')
+//     );
+// });
+// console.log("NODE_ENV =", process.env.NODE_ENV);
 
 
 
