@@ -34,7 +34,7 @@
   
   .ordersList-table th {
     background-color: var(--bg-secondary);
-    color: #fff;
+    /* color: #fff; */
   }
   
   .ordersList-table tr:nth-child(even) {

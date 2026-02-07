@@ -17,12 +17,14 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .product-table th,
   .product-table td {
+    
     text-align: left;
     padding: 10px;
     border: 1px solid #ddd;
@@ -30,7 +32,8 @@
   
   .product-table th {
     background-color: var(--bg-secondary);
-    color: #fff;
+    color: #010000;
+
   }
   .admin-product-image{
     width:70px;
@@ -49,7 +52,7 @@
   
   .action-icon {
     margin-right: 10px;
-    cursor: pointer;
+    cursor: pointer; 
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -85,5 +88,6 @@
   .loading-message {
     font-size: 18px;
     color: #555;
+    /* color:black; */
   }
   

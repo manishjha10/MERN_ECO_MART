@@ -1,0 +1,211 @@
+/* ============================= */
+/* Hero Section */
+/* ============================= */
+
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.55),
+            rgba(0, 0, 0, 0.55)),
+        url("./banner.png") center/cover no-repeat;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.about-hero-content {
+    text-align: center;
+    max-width: 720px;
+    padding: 0 20px;
+}
+
+.about-hero-content h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.about-hero-content p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* ============================= */
+/* Main Container */
+/* ============================= */
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 20px;
+}
+
+/* ============================= */
+/* Grid Sections */
+/* ============================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 90px;
+}
+
+.about-grid.reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* ============================= */
+/* Text */
+/* ============================= */
+
+.about-text h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.about-text p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.about-text ul {
+    padding-left: 18px;
+}
+
+.about-text ul li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* ============================= */
+/* Images – PREMIUM HOVER */
+/* ============================= */
+
+.about-image {
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+
+/* Hover effect */
+.about-image:hover img {
+    transform: scale(1.06);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================= */
+/* Cards Section */
+/* ============================= */
+
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.about-card {
+    background: #fff;
+    padding: 38px 28px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.about-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #111;
+}
+
+.about-card p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ============================= */
+/* Tablet Responsive */
+/* ============================= */
+
+@media (max-width: 992px) {
+    .about-hero {
+        height: 280px;
+    }
+
+    .about-hero-content h1 {
+        font-size: 34px;
+    }
+
+    .about-grid {
+        gap: 40px;
+    }
+}
+
+/* ============================= */
+/* Mobile Responsive */
+/* ============================= */
+
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 70px;
+    }
+
+    .about-grid.reverse {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .about-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero-content h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .about-hero {
+        height: 240px;
+    }
+
+    .about-hero-content h1 {
+        font-size: 26px;
+    }
+
+    .about-hero-content p {
+        font-size: 15px;
+    }
+
+    .about-container {
+        padding: 50px 16px;
+    }
+}
+
+/* ============================= */
+/* Touch Devices – No Hover Jump */
+/* ============================= */
+
+@media (hover: none) {
+    .about-image:hover img {
+        transform: none;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    }
+}

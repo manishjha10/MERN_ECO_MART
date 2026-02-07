@@ -51,8 +51,10 @@
   
   .explore-btn {
     padding: 0.7rem 1.5rem;
-    background-color:var(--bg-secondary);
-    color:var(--text-primary);
+    background-color: rgb(36, 22, 22);
+    /* background-color:var(--bg-secondary); */
+    color:white;
+    /* color:var(--text-primary); */
     text-decoration: none;
     font-size: 1rem;
     border-radius: 5px;
@@ -61,6 +63,6 @@
   }
   
   .explore-btn:hover {
-    background-color: var(--bg-primary);
+    background-color: black;
   }
   

@@ -34,7 +34,7 @@
   
   .usersList-table th {
     background-color: var(--bg-secondary);
-    color: #fff;
+    color: #000000;
   }
   
   .usersList-table tr:nth-child(even) {

@@ -5,6 +5,8 @@ const images=[
     "/images/banner2.png", 
     "/images/banner3.png", 
     "/images/banner4.png",
+    "/images/banner5.png",
+    "/images/banner6.png",
 ]
 
 function ImageSlider() {

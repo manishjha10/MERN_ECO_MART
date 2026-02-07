@@ -14,6 +14,7 @@
     z-index: 10;
     margin-bottom: 20px;
     width: 500px;
+    overflow: hidden; /* hide edges when image scales */
   }
   
 
@@ -23,9 +24,17 @@
     object-fit: contain;
     border-radius: 8px;
     background: #fff;
+    transition: transform 0.35s ease;
+    transform-origin: center center;
+  }
+  .product-image-container:hover .product-detail-image {
+    transform: scale(1.08);
+    cursor: zoom-in;
   }
   .product-thumbnails{
     margin-top: 20px;
+    display:flex;
+    gap:10px;
   }
   .thumbnail-image {
     width: 80px;
@@ -33,15 +42,19 @@
     object-fit: cover;
     cursor: pointer;
     margin-left:10px;
-    transition: transform 0.3s, border 0.3s;
+    transition: transform 0.25s, border 0.25s, box-shadow 0.25s;
+    border-radius:4px;
   }
   
   .thumbnail-image:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: 2px solid rgba(0,0,0,0.2);
   }
   
   .thumbnail-image.selected {
-    box-shadow: 0 0 2px black;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+    border: 2px solid #111;
   }
   
   
@@ -83,6 +96,7 @@
   .quantity-button {
     width: 35px;
     height: 35px;
+    color:black;
     border: 1px solid #D5D9D9;
     background: linear-gradient(to bottom, #F7F8FA, #E7E9EC);
     cursor: pointer;
@@ -143,7 +157,8 @@
   }
   
   .submit-review-btn {
-    background: var(--bg-primary);
+    /* background: var(--bg-primary); */
+    background: #374759;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -152,7 +167,9 @@
   }
   
   .submit-review-btn:hover {
-    background: #374759;
+      color: white;
+      background-color: #111827 !important;
+    /* background: #374759; */
   }
   
 
@@ -204,5 +221,46 @@
  
   }
   
-  
-  
+.quantity-button,
+.add-to-cart-btn {
+  color: black;
+}
+
+.quantity-button:hover,
+.quantity-button:focus
+{
+  color: black;
+}
+
+.add-to-cart-btn {
+  color: white;
+  /* visible text */
+}
+
+
+
+
+.add-to-cart-btn:hover {
+  color:white;
+  background-color: #111827 !important;
+} 
+
+
+/* Remove blue focus outline */
+.quantity-button:focus,
+.quantity-button:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Clean hover effect instead */
+.quantity-button:hover {
+  background: #e5e7eb;
+  /* light gray */
+  border-color: #9ca3af;
+}
+
+/* Optional: active click feedback */
+.quantity-button:active {
+  background: #d1d5db;
+}

@@ -31,10 +31,19 @@
     transition: color 0.2s ease;
    }
   
-  .navbar-logo a:hover {
+  /* .navbar-logo a:hover {
     color: #ffffff;
-    color: var(--primary-main);
-  }
+    
+  } */
+
+    a {
+      color: #e5e7eb;
+      transition: opacity 0.3s ease;
+    }
+  
+    a:hover {
+      opacity: 0.85;
+    }
   
   .navbar-links {
     flex: 1;

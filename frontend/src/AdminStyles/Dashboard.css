@@ -7,7 +7,8 @@
   
   .sidebar {
     width: 270px;
-    background-color: var(--bg-secondary);
+    /* background-color: var(--bg-secondary); */
+    background-color:#3B3B4F;
     color: white;
     padding: 20px;
     padding-bottom:50px;
@@ -196,3 +197,5 @@
       grid-template-columns: 1fr;
     }
   }
+
+

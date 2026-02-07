@@ -12,7 +12,7 @@ function NoProducts({keyword}) {
             Try using different keywords or browse our complete catalog.`:`No products are available. Please check later`}
         </p>
     </div>
-  )
+  ) 
 }
 
 export default NoProducts

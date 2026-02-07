@@ -33,7 +33,7 @@ router.route("/admin/product/:id")
 
 router.route("/product/:id").get(getSingleProduct)
 router.route("/review").put(verifyUserAuth , createReviewForProduct)
-router.route("/reviews").get(getProduceReviews).delete(verifyUserAuth, deleteReview)
+router.route("/admin/reviews").get(verifyUserAuth, roleBasedAccess("admin"), getProduceReviews).delete(verifyUserAuth, roleBasedAccess("admin"), deleteReview)
 
 
 

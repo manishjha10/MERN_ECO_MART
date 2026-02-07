@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom'; 
 import '../pageStyles/Search.css'; 
+import { useSelector } from 'react-redux';
 
 
 function Navbar(){ 
@@ -28,13 +29,14 @@ function Navbar(){
   }
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const isAuthenticated = false;
+  const {isAuthenticated }= useSelector(state=>state.user);
+  const {cartItems}=useSelector(state=>state.cart);
 
   return (
     <nav className="navbar">
     <div className="navbar-container">
       <div className="navbar-logo"> 
-        <Link to="/" onClick={()=>setIsMenuOpen(false)}>EcoMart</Link> 
+        <Link to="/" onClick={() => setIsMenuOpen(false)}>𝔈co Mart</Link> 
       </div>
      
       <div className={`navbar-links ${isMenuOpen?`active`:""}`}>
@@ -65,7 +67,7 @@ function Navbar(){
           <div className="cart-container">
             <Link to="/cart">
               <ShoppingCartIcon className="icon"/>
-               <span className="cart-badge">6</span>
+               <span className="cart-badge">{cartItems.length}</span>
               </Link>
           </div> 
           

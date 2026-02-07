@@ -94,3 +94,61 @@
     }
   }
   
+
+  /* Hover on Footet*/ 
+    
+
+.footer-social a {
+  color: #e5e7eb;
+  font-size: 20px;
+  margin-right: 14px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #2ecc71;
+  transform: translateY(-4px) scale(1.05);
+}
+
+.footer-about p {
+  color: #cbd5e1;
+  transition: color 0.3s ease;
+}
+
+.footer-about p:hover {
+  color: #ffffff;
+}
+
+.footer h3 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.footer h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #2ecc71;
+  transition: width 0.3s ease;
+}
+
+.footer h3:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+
+  .footer-contact a:hover,
+  .footer-contact p:hover {
+    transform: none;
+  }
+
+  .footer-social a {
+    margin-right: 18px;
+  }
+}
+

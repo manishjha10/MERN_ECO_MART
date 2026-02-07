@@ -24,10 +24,10 @@ function Footer() {
         <div className="footer-section social">
           <h3>Follow me</h3>
           <div className="social-links">
-            <a href="" target="_blank"><GitHub className="social-icon" /></a>
-            <a href="" target="_blank"><LinkedIn className="social-icon"/></a>
-            <a href="" target="_blank"><YouTube className="social-icon" /></a>
-            <a href="" target="_blank"><Twitter className="social-icon" /></a>
+            <a href="https://github.com/manishjha10" target="_blank"><GitHub className="social-icon" /></a>
+            <a href="https://www.linkedin.com/in/manish-jha-2ab78a290/" target="_blank"><LinkedIn className="social-icon"/></a>
+            <a href="https://www.youtube.com/" target="_blank"><YouTube className="social-icon" /></a>
+            <a href="https://x.com/ManishJha141778" target="_blank"><Twitter className="social-icon" /></a>
           </div>
         </div>
         {/*Section 3*/}
@@ -37,7 +37,7 @@ function Footer() {
         </div>
       </div>
       <div className='footer-bottom'>
-        <p> &copy; 2026 EcoMart . All rights reserved</p>
+        <p> &copy; 2026 𝔈co Mart . All rights reserved</p>
       </div>
     </footer> 
   )

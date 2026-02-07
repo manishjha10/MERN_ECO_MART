@@ -8,14 +8,14 @@
   
   .profile-image {
     text-align: center;
-    background: linear-gradient(135deg, #f6f8ff 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #d9dfed 0%, #ffffff 100%);
     border-radius: 15px;
     margin-bottom: 2.5rem;
   }
   
   .profile-heading {
     font-size: 2.5rem;
-    color: var( --bg-secondary);
+    /* color: var( --bg-secondary); */
     margin:2rem 0;
     font-weight: 600;
     letter-spacing: -0.5px;
@@ -50,7 +50,7 @@
   }
   
   .profile-image a:hover {
-    background-color: var( --primary-dark);
+    /* background-color: var( --primary-dark); */
     transform: translateY(-2px);
   }
   
@@ -100,7 +100,7 @@
     margin-top: 2.5rem;
   }
   
-  .profile-buttons a {
+  /* .profile-buttons a {
     padding: 0.875rem 2rem;
     background-color: var(--border-color);
     color: white;
@@ -109,13 +109,37 @@
     transition: all 0.3s ease;
     font-weight: 500;
     box-shadow: 0 4px 12px var(--bg-secondary)
-  }
+  } */
   
-  .profile-buttons a:hover {
-    background-color: var(--bg-secondary);
+  /* .profile-buttons a:hover {
+    background-color: var(--bg-secdary);
     transform: translateY(-2px);
-  }
+  } */
+    
+         .profile-buttons a {
+           padding: 0.875rem 2rem;
+           background-color: var(--border-color);
+           color: white;
+           text-decoration: none;
+           border-radius: 10px;
+           transition: all 0.3s ease;
+           font-weight: 500;
+           box-shadow: 0 4px 12px var(--bg-secondary);
+         }
+    
+         .profile-buttons a:hover {
   
+           /* background-color: var(--primary-dark); */
+           /* darker */
+           /* color: #ffffff; */
+           /* force white text */
+           transform: translateY(-2px);
+         }
+
+
+
+
+
   @media (max-width: 768px) {
     .profile-container {
       margin: 1.5rem;

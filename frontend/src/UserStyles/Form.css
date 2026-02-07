@@ -36,7 +36,7 @@
   
   .form h2 {
     text-align: center;
-    color: var(--primary-main);
+    /* color: var(--primary-main); */
     margin-bottom: 20px;
   }
   
@@ -75,8 +75,10 @@
   }
   .authBtn {
     width: 100%;
-    background: var(--primary-main);
-    color: var(--text-primary);
+    /* background: var(--primary-main); */
+    /* color: var(--text-primary); */
+    background-color: #6B5B7A;
+    color:#FFFFFF;
     border: none;
     padding: 14px;
     border-radius: 5px;
@@ -86,8 +88,9 @@
   }
   
   button:hover {
-    background:var(--primary-dark);
-    color:var(--text-primary);
+    /* background:var(--primary-dark); */
+     color:var(--text-primary); 
+  
   }
  .form-links{
     text-align: center;
@@ -164,6 +167,4 @@
       margin-top:60px;
     }
   }
-  
-
-  
+    

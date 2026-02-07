@@ -2,12 +2,182 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ECO MART</title>
+    <title>𝔈co Mart</title>
   </head>
+
+  
+    <!-- <style>
+      #bp-chat-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #000;
+        cursor: pointer;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    
+      #bp-chat-btn img {
+        width: 34px;
+        height: 34px;
+      }
+    
+      #bp-chat-frame {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 380px;
+        height: 520px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, .3);
+        z-index: 999999;
+        display: none;
+      }
+    
+      @media (max-width: 600px) {
+        #bp-chat-frame {
+          width: 95vw;
+          height: 90vh;
+          right: 2.5vw;
+          bottom: 90px;
+        }
+      }
+    </style> -->
+
+    <style>
+      /* Floating AI Button */
+      #bp-chat-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    
+        width: 60px;
+        height: 60px;
+    
+        border-radius: 50%;
+        background: #000;
+        cursor: pointer;
+    
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+    
+      #bp-chat-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, .45);
+      }
+    
+      #bp-chat-btn img {
+        width: 34px;
+        height: 34px;
+        max-width: 70%;
+        max-height: 70%;
+      }
+    
+      /* Chat iframe */
+      #bp-chat-frame {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+    
+        width: 380px;
+        height: 560px;
+    
+        border: none;
+        border-radius: 14px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, .3);
+        z-index: 999999;
+    
+        display: none;
+        background: #fff;
+      }
+    
+      /* Tablet */
+      @media (max-width: 768px) {
+        #bp-chat-btn {
+          width: 54px;
+          height: 54px;
+          bottom: 16px;
+          right: 16px;
+        }
+    
+        #bp-chat-btn img {
+          width: 30px;
+          height: 30px;
+        }
+    
+        #bp-chat-frame {
+          width: 92vw;
+          height: 75vh;
+          right: 4vw;
+          bottom: 80px;
+        }
+      }
+    
+      /* Mobile */
+      @media (max-width: 480px) {
+        #bp-chat-btn {
+          width: 50px;
+          height: 50px;
+          bottom: 14px;
+          right: 14px;
+        }
+    
+        #bp-chat-btn img {
+          width: 26px;
+          height: 26px;
+        }
+    
+        #bp-chat-frame {
+          width: 96vw;
+          height: 88vh;
+          right: 2vw;
+          bottom: 72px;
+          border-radius: 12px;
+        }
+      }
+    </style>
+
+    
+    <div id="bp-chat-btn">
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" />
+    </div>
+    
+    <iframe id="bp-chat-frame"
+      src="https://cdn.botpress.cloud/webchat/v3.5/shareable.html?configUrl=https://files.bpcontent.cloud/2025/10/10/00/20251010004516-7JJ2H8RY.json">
+    </iframe>
+    
+    <script>
+      const btn = document.getElementById("bp-chat-btn");
+      const frame = document.getElementById("bp-chat-frame");
+
+      btn.addEventListener("click", () => {
+        frame.style.display =
+          frame.style.display === "none" ? "block" : "none";
+      });
+    </script>
+
+
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script> 
+
+
+
   </body>
 </html>

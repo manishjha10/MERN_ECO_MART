@@ -6,17 +6,24 @@ import Footer from '../components/Footer';
 import Rating from '@mui/material/Rating';
 import {useDispatch, useSelector } from 'react-redux'; 
 import { useParams } from 'react-router-dom';
-import { getProductDetails, removeErrors } from '../features/products/productSlice';
+import { createReview, getProductDetails, removeErrors, removeSuccess } from '../features/products/productSlice';
 import { toast } from 'react-toastify';
 import Loader from '../components/Loader';
+import { addItemsToCart, removeMessage } from '../features/cart/cartSlice';
 
 
 function ProductDetails() {
     const [userRating, setUserRating]=useState(0);  
+    const [comment, setComment] = useState(""); 
+    const [quantity, setQuantity]=useState(1);   
+    const [selectedImage, setSelectedImage]=useState(""); 
        const handleRatingChange=(newRating)=>{
            setUserRating(newRating);
        }
-       const {loading, error, product} = useSelector((state)=> state.product)
+    const { loading, error, product, reviewSuccess,reviewLoading } = useSelector((state)=> state.product)
+       const { loading: cartLoading, error: cartError, success, message, cartItems } = useSelector((state) => state.cart)
+    //    console.log(cartItems);
+
        const dispatch = useDispatch();
        const {id} = useParams(); 
        useEffect(()=>{ 
@@ -29,13 +36,81 @@ function ProductDetails() {
         }
        }, [dispatch, id]) 
 
+       useEffect(() => {
+         if (product?.images?.length > 0) {
+             setSelectedImage(product.images[0].url.replace('./public', ''));
+         }
+       }, [product]);
+
         useEffect(() => {
           if(error)
           {
             toast.error(error.message, {position: 'top-center', autoClose:3000});  
             dispatch(removeErrors());
           }
-        }, [dispatch, error])
+            if (cartError) {
+                toast.error(cartError, { position: 'top-center', autoClose: 3000 });
+            }
+        }, [dispatch, error, cartError])
+        
+    useEffect(() => {
+        if (success) {
+            toast.success(message, { position: 'top-center', autoClose: 3000 });
+            dispatch(removeMessage());
+        }
+    }, [dispatch, success, message])
+
+
+    const decreaseQuantity = () => {
+        if (quantity <= 1) {
+            toast.error('Quantity cannot be less than 1', {
+                position: 'top-center',
+                autoClose: 3000
+            });
+            return;
+        }
+        setQuantity(qty => qty - 1);
+    };
+    
+
+    const increaseQuantity = () => {
+        if (quantity >= Number(product?.stock)) {
+            toast.error('Cannot exceed available stock', {
+                position: 'top-center',
+                autoClose: 3000
+            });
+            return;
+        }
+        setQuantity(qty => qty + 1);
+    };
+
+    const addToCart=()=>{
+         dispatch(addItemsToCart({id, quantity})) 
+    } 
+
+    const handleReviewSubmit=(e)=>{
+        e.preventDefault(); 
+        if(!userRating)
+        {
+            toast.error('Please Select a rating', {position:'top-center', autoClose:3000})
+            return; 
+        } 
+       dispatch(createReview({
+        rating:userRating, 
+        comment, 
+        productId:id 
+       }))
+    } 
+    useEffect(()=>{
+        if(reviewSuccess)
+        {
+            toast.success(`Review  Submitted Successfully`, { position: 'top-center', autoClose: 3000 })
+            setUserRating(0); 
+            setComment(""); 
+            dispatch(removeSuccess());   
+            dispatch(getProductDetails(id));   
+        }
+    }, [reviewSuccess, id,dispatch]) 
 
     if (loading) {
         return (
@@ -58,21 +133,36 @@ function ProductDetails() {
         );
     }
 
-
   return (
       <>
       <PageTitle title={`${product?.name || 'Product'} - Details`} /> 
      <Navbar/> 
-      <div className="product-details-container">
-        <div className="product-detail-container">
+        <div className="product-details-container">
+            <div className="product-detail-container">
                   <div className="product-image-container">
                       {product?.images?.length > 0 && (
                           <img
-                              src={product.images[0].url.replace('./public', '')}
+                              src={(selectedImage) || product.images[0].url.replace('./public', '')}
                               alt={product?.name || 'Product'}
                               className="product-detail-image"
                           />
                       )}
+                      <div className="product-thumbnails">
+
+                          {product?.images?.map((img, idx) => {
+                              const imgUrl = img.url.replace('./public', '');
+                              return (
+                                <img
+                                  key={idx}
+                                  src={imgUrl}
+                                  alt={`Thumbnail ${idx + 1}`}
+                                  className={`thumbnail-image ${selectedImage === imgUrl ? 'selected' : ''}`}
+                                  onClick={() => setSelectedImage(imgUrl)}
+                                  onMouseEnter={() => setSelectedImage(imgUrl)}
+                                />
+                              )
+                          })}
+                      </div> 
                   </div> 
 
             <div className="product-info">
@@ -87,7 +177,7 @@ function ProductDetails() {
 
                 <div className="product-rating">
                     <Rating 
-                     value={2}
+                     value={product?.ratings || 0}
                      disabled={true}
                     />
                           <span className="productCardSpan">
@@ -109,24 +199,34 @@ function ProductDetails() {
                       </div>
 
 
-               {product?.stock > 0 && (<><div className="quantity-controls">
+               {product?.stock > 0 && (<>
+               <div className="quantity-controls">
                     <span className="quantitu-label">Quantity:</span>
-                    <button className="quantity-button">-</button> 
-                    <input type="text" value={1} className='quantity-value' readOnly/>
-                    <button className="quantity-button">+</button>  
+                    <button type="button" className="quantity-button" onClick={decreaseQuantity}>-</button> 
+                    <input type="text" value={quantity} className='quantity-value' readOnly/>
+                              <button type="button" className="quantity-button" onClick={increaseQuantity}>+</button>  
                 </div> 
-                <button className="add-to-cart-btn">Add to Cart</button></>)}  
+                          <button className="add-to-cart-btn" 
+                              onClick={addToCart} disabled={cartLoading}>{cartLoading?'Adding':'Add to Cart'}</button></>)}  
 
                 
-                <form className="review-action">
+                <form className="review-action" onSubmit={handleReviewSubmit}>
                     <h3>Write a Review</h3>
                           <Rating
                               value={userRating}
                               onChange={(e, newValue) => handleRatingChange(newValue)}
                           />
                     <textarea placeholder='Write your review here'
-                    className='review-input'></textarea>
-                    <button className="submit-review-btn">Submit Review</button>
+                    className='review-input' value={comment} onChange={(e)=>setComment(e.target.value)} required></textarea>
+                    {/* <button  className="submit-review-btn" disabled={reviewLoading}>{{reviewLoading}?`Submiting...`:`Submit Review`}</button> */}
+                          <button
+                              type="submit"
+                              className="submit-review-btn"
+                              disabled={reviewLoading}
+                          >
+                              {reviewLoading ? 'Submitting...' : 'Submit Review'}
+                          </button>
+
                 </form>
             </div>        
         </div>

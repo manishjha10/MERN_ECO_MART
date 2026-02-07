@@ -5,32 +5,73 @@ import HandleError from "../utils/handleError.js";
 import bcryptjs from "bcryptjs";
 import { sendToken } from "../utils/jwtToken.js";
 import { sendEmail  } from "../utils/sendEmail.js";
+import { v2 as cloudinary } from 'cloudinary'; 
 
 
 
+// export const registerUser = handleAsyncError(async (req, res, next) => {
+//   const { name, email, password , avatar} = req.body;
+//   const myCloud = await cloudinary.uploader.upload(avatar, {
+//      folder:"avatars",
+//      width:150,
+//      crop: "scale" 
+//   }); 
+//   if (!name || !email || !password || !avatar) {
+//     return next(new HandleError("All fields are required", 400));
+//   }
 
+//   const user = await User.create({ 
+//     name,
+//     email,
+//     password,
+//     avatar: {
+//       public_id: myCloud.public_id,
+//       url: myCloud.secure_url
+//     }
+//   });
+
+//   sendToken(user, 200, res)
+// });
+
+
+// LOGIN USER
 export const registerUser = handleAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
-  
+
   if (!name || !email || !password) {
     return next(new HandleError("All fields are required", 400));
   }
+
+  if (!req.files || !req.files.avatar) {
+    return next(new HandleError("Avatar is required", 400));
+  }
+
+  const avatarFile = req.files.avatar;
+
+  const myCloud = await cloudinary.uploader.upload(
+    avatarFile.tempFilePath,
+    {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    }
+  );
 
   const user = await User.create({
     name,
     email,
     password,
     avatar: {
-      public_id: "This is temp id",
-      url: "This is temp id"
-    }
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    },
   });
 
-  sendToken(user, 200, res)
+  sendToken(user, 200, res);
 });
 
 
-// LOGIN USER
+
 export const loginUser = handleAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
  
@@ -87,11 +128,13 @@ export const requestPasswordReset = handleAsyncError(async (req, res, next) => {
     resetToken = user.generatePasswordResetToken()
     await user.save({ validateBeforeSave: false })
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return next(new HandleError("could not save reset token, please try again later", 500))
   }
-   
-  const resetPasswordURL = `http://localhost/api/v1/reset/${resetToken}`;
+  
+  const resetPasswordURL =
+    `${process.env.FRONTEND_URL}/reset/${resetToken}`; 
+  // const resetPasswordURL = `${req.protocol}://${req.get('host')}/reset/${resetToken}`;
   const message = `Use the following link to reset your password: 
   ${resetPasswordURL}. \n\n This link will expire in 30 minutes. \n\n
   If you did't request a password reset, please ignore this message.`;
@@ -171,23 +214,78 @@ export const updatePassword=handleAsyncError(async(req, res, next)=>{
 })
 
 // update User Profile
-export const updateProfile = handleAsyncError(async (req, res, next) => {
-    const {name, email}=req.body;
-    const updateUserDetails={
-      name,
-      email
-    }
-    const user = await User.findByIdAndUpdate(req.user.id, updateUserDetails, {
-      new:true, 
-      runValidators:true
-    })
-    res.status(200).json({
-      success:true, 
-      message:"Profie Updated Successfuly",
-      user
-    })
+// export const updateProfile = handleAsyncError(async (req, res, next) => {
+//     const {name, email}=req.body;
+//     const updateUserDetails={
+//       name,
+//       email
+//     }
+//     const user = await User.findByIdAndUpdate(req.user.id, updateUserDetails, {
+//       new:true, 
+//       runValidators:true
+//     })
+//     res.status(200).json({
+//       success:true, 
+//       message:"Profie Updated Successfuly",
+//       user
+//     })
     
-}) 
+// }) 
+
+
+export const updateProfile = handleAsyncError(async (req, res, next) => {
+  const { name, email} = req.body;
+
+  const newUserData = {
+    name,
+    email,
+  }; 
+
+  const user = await User.findById(req.user.id);
+
+  // ✅ If new avatar is uploaded
+  if (req.files && req.files.avatar) {
+    // 🔥 Remove old avatar
+    if (user.avatar && user.avatar.public_id) {
+      await cloudinary.uploader.destroy(user.avatar.public_id);
+    }
+
+    // 🔥 Upload new avatar (invalidate cache)
+    const result = await cloudinary.uploader.upload(
+      req.files.avatar.tempFilePath,
+      {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
+        invalidate: true, // ✅ force CDN refresh
+      }
+    );
+
+    // 🔥 Save avatar with version (VERY IMPORTANT)
+    newUserData.avatar = {
+      public_id: result.public_id,
+      url: result.secure_url,
+      version: result.version, // 🔥 this changes on every upload
+    };
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.id,
+    newUserData,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "Profile Updated Successfully",
+    user: updatedUser,
+  });
+});
+
+
 
 
 // Admin - Getting user information 
@@ -242,7 +340,10 @@ export const deleteUser = handleAsyncError(async (req, res, next) => {
       if(!user)
       {
         return next(new HandleError("User does'nt exist", 400))
-      }
+      } 
+      const imageId = user.avatar.public_id; 
+      await cloudinary.uploader.destroy(imageId); 
+
       await User.findByIdAndDelete(req.params.id);
       res.status(200).json({
         success: true, 

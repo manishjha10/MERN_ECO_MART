@@ -42,7 +42,8 @@
   
   .btn {
     padding: 10px;
-    background-color: var(--bg-secondary);
+    /* background-color: var(--bg-secondary); */
+    background-color: rgb(24, 15, 15);
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -50,6 +51,6 @@
   }
   
   .btn:hover {
-    background-color: var(--bg-primary);
+    background-color: black;
   }
   

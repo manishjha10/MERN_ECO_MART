@@ -3,7 +3,7 @@ import '../pageStyles/Home.css';
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar';
 import ImageSlider from '../components/ImageSlider';
-import Product from '../components/product';
+import Product from '../components/Product.jsx';
 import PageTitle from '../components/PageTitle';
 import Loader from '../components/Loader.jsx';
 import { useSelector } from 'react-redux';
@@ -29,7 +29,7 @@ function Home() {
  return (
   <>
     {loading?(<Loader/>) : (<> 
-    <PageTitle title="Home-My webisite"/> 
+       <PageTitle title="𝔈co Mart"/> 
       <Navbar />
       <div className="home">
         <ImageSlider />
