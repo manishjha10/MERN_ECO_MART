@@ -182,9 +182,11 @@ app.use("/api/v1", contact);
 
 // Serve frontend
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
-app.get("/*", (req, res) => {
+
+app.use((req, res) => {
     res.sendFile(path.resolve(__dirname, "../frontend/dist/index.html"));
 });
+
 
 // Error middleware
 app.use(errorHandleMiddleware);
