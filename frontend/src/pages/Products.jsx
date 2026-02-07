@@ -3,14 +3,14 @@ import '../pageStyles/Products.css';
 import Navbar from '../components/Navbar'; 
 import Footer from '../components/Footer';
 import PageTitle from '../components/PageTitle';
-import Product from '../components/product';
+import Product from "../components/Product";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct, removeErrors } from '../features/products/productSlice';
 import Loader from '../components/Loader';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import NoProducts from '../components/NoProducts';
-import Pagination from '../components/pagination';
+import Pagination from '../components/Pagination';
 
 
 
