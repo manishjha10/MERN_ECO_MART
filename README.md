@@ -3,7 +3,7 @@
 Eco Mart is a **full-stack e-commerce web application** built using the **MERN stack**.  
 The application provides a simple and user-friendly shopping experience where users can browse products, filter products by category, view product details, manage their cart, and place orders.
 
-The project also includes an **admin dashboard** for managing products, categories, customers, orders, inventory, and other store operations.
+The project also includes an **admin dashboard** for managing products,categories, customers, orders, inventory, and other store operations.
 
 ---
 
@@ -99,7 +99,7 @@ The admin panel provides centralized management of the e-commerce platform.
 
 The home page contains the navigation bar, promotional banner, product sections, shopping options, cart, search, and user account controls.
 
-![Eco Mart Home Page](./screenshots/home-banner.png)
+![Eco Mart Home Page](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191147.png)
 
 ---
 
@@ -107,7 +107,7 @@ The home page contains the navigation bar, promotional banner, product sections,
 
 Users can select a category and browse the available products. Each product card displays the product image, name, price, rating, reviews, and a **View Details** button.
 
-![Jackets Products](./screenshots/jackets-products.png)
+![Jackets Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191310.png)
 
 ---
 
@@ -115,15 +115,14 @@ Users can select a category and browse the available products. Each product card
 
 Products can be displayed category-wise, making it easier for users to find products based on their requirements.
 
-![T-Shirt Products](./screenshots/tshirts-products.png)
+![T-Shirt Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191229.png)
 
 ---
 
 ### 🔥 Trending Products
 
 The application provides a **Trending Now** section to highlight selected products.
-
-![Trending Products](./screenshots/trending-products.png)
+![Trending Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191207.png).
 
 ---
 
@@ -423,42 +422,6 @@ cd backend
 npm install
 ```
 
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file inside the backend folder.
-
-Example:
-
-```env
-PORT=5001
-NODE_ENV=development
-
-MONGODB_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_jwt_secret
-
-CLIENT_URL=http://localhost:5173
-
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-
-EMAIL_HOST=your_email_host
-EMAIL_PORT=your_email_port
-EMAIL_USER=your_email
-EMAIL_PASSWORD=your_email_password
-```
-
-> Never commit your `.env` file or secret API keys to GitHub.
-
----
-
-## ▶️ Run the Project
 
 ### Start Backend
 
@@ -543,22 +506,6 @@ Deployment architecture:
 
 ---
 
-## 🔒 Security
-
-The application follows basic web security practices:
-
-- JWT-based authentication
-- Protected admin routes
-- Environment variables for secrets
-- Password hashing
-- API authentication middleware
-- Role-based access control
-- Secure payment verification
-- HTTP-only cookies where applicable
-- Input validation
-
----
-
 ## 📱 Responsive Design
 
 The application is designed to provide a consistent shopping experience across:
@@ -623,9 +570,3 @@ B.Tech Computer Science Engineering
 ## ⭐ Support
 
 If you find this project useful, consider giving the repository a ⭐ on GitHub.
-
----
-
-## 📄 License
-
-This project is developed for educational and portfolio purposes.
