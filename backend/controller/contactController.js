@@ -7,7 +7,5 @@ export const submitContact = handleAsyncError(async (req, res, next) => {
         return res.status(400).json({ success: false, message: 'Name, email and message are required' });
     }
 
-    // TODO: persist to DB or send email. For now, accept and return success.
-
     res.status(200).json({ success: true, message: 'Contact message received' });
 });
