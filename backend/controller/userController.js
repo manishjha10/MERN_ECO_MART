@@ -189,24 +189,6 @@ export const updatePassword=handleAsyncError(async(req, res, next)=>{
   sendToken(user, 200, res); 
 })
 
-// update User Profile
-// export const updateProfile = handleAsyncError(async (req, res, next) => {
-//     const {name, email}=req.body;
-//     const updateUserDetails={
-//       name,
-//       email
-//     }
-//     const user = await User.findByIdAndUpdate(req.user.id, updateUserDetails, {
-//       new:true, 
-//       runValidators:true
-//     })
-//     res.status(200).json({
-//       success:true, 
-//       message:"Profie Updated Successfuly",
-//       user
-//     })
-    
-// }) 
 
 
 export const updateProfile = handleAsyncError(async (req, res, next) => {
@@ -219,7 +201,7 @@ export const updateProfile = handleAsyncError(async (req, res, next) => {
 
   const user = await User.findById(req.user.id);
 
-  // ✅ If new avatar is uploaded
+  // If new avatar is uploaded
   if (req.files && req.files.avatar) {
     // Remove old avatar
     if (user.avatar && user.avatar.public_id) {
@@ -233,7 +215,7 @@ export const updateProfile = handleAsyncError(async (req, res, next) => {
         folder: "avatars",
         width: 150,
         crop: "scale",
-        invalidate: true, // ✅ force CDN refresh
+        invalidate: true,
       }
     );
 
@@ -241,7 +223,7 @@ export const updateProfile = handleAsyncError(async (req, res, next) => {
     newUserData.avatar = {
       public_id: result.public_id,
       url: result.secure_url,
-      version: result.version, // this changes on every upload
+      version: result.version,  // this changes on every upload
     };
   }
 
