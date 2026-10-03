@@ -9,29 +9,6 @@ import { v2 as cloudinary } from 'cloudinary';
 
 
 
-// export const registerUser = handleAsyncError(async (req, res, next) => {
-//   const { name, email, password , avatar} = req.body;
-//   const myCloud = await cloudinary.uploader.upload(avatar, {
-//      folder:"avatars",
-//      width:150,
-//      crop: "scale" 
-//   }); 
-//   if (!name || !email || !password || !avatar) {
-//     return next(new HandleError("All fields are required", 400));
-//   }
-
-//   const user = await User.create({ 
-//     name,
-//     email,
-//     password,
-//     avatar: {
-//       public_id: myCloud.public_id,
-//       url: myCloud.secure_url
-//     }
-//   });
-
-//   sendToken(user, 200, res)
-// });
 
 
 // LOGIN USER
@@ -101,7 +78,7 @@ export const loginUser = handleAsyncError(async (req, res, next) => {
 });
 
 
-//Logout
+// Logout
 export const logout = handleAsyncError(async(req, res, next)=>{
   
   res.cookie('token',null, {
@@ -245,12 +222,12 @@ export const updateProfile = handleAsyncError(async (req, res, next) => {
 
   // ✅ If new avatar is uploaded
   if (req.files && req.files.avatar) {
-    // 🔥 Remove old avatar
+    // Remove old avatar
     if (user.avatar && user.avatar.public_id) {
       await cloudinary.uploader.destroy(user.avatar.public_id);
     }
 
-    // 🔥 Upload new avatar (invalidate cache)
+    // Upload new avatar (invalidate cache)
     const result = await cloudinary.uploader.upload(
       req.files.avatar.tempFilePath,
       {
@@ -261,11 +238,11 @@ export const updateProfile = handleAsyncError(async (req, res, next) => {
       }
     );
 
-    // 🔥 Save avatar with version (VERY IMPORTANT)
+    // Save avatar with version (VERY IMPORTANT)
     newUserData.avatar = {
       public_id: result.public_id,
       url: result.secure_url,
-      version: result.version, // 🔥 this changes on every upload
+      version: result.version, // this changes on every upload
     };
   }
 
