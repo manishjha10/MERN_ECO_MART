@@ -46,25 +46,6 @@ function CreateProduct() {
     }
 
 
-    // const createProductImage=(e)=>{
-    //    const files = Array.from(e.target.files);
-
-    //    setImage([]); 
-    //    setImagePreview([]);  
-
-    //    files.forEach((file)=>{
-    //     const reader= new FileReader(); 
-    //     reader.onload=()=>{
-    //         if(reader.readyState===2)
-    //         {
-    //             setImagePreview((old)=>[...old, reader.result]); 
-    //             setImage((old)=>[...old, reader.result]); 
-    //         }
-    //     }
-    //     reader.readAsDataURL(file); 
-    //    })
-    // }
-
 
     const createProductImage = (e) => {
         const files = Array.from(e.target.files);
