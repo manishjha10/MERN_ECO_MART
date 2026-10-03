@@ -2,11 +2,9 @@ import express from 'express';
 import { logout, loginUser, registerUser, requestPasswordReset, resetPassword, getUserDetails, updatePassword, updateProfile, getUserList, getSingleUser, updateUserRole, deleteUser } from '../controller/userController.js';
 import { roleBasedAccess, verifyUserAuth } from '../middlewares/userAuth.js';
 
-// import { upload } from "../middlewares/multer.js";
 
 const router = express.Router();
 
-// router.route("/register").post(upload.single("avatar"), registerUser);
 
 
 
