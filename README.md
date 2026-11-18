@@ -1,9 +1,11 @@
 # 🛍️ Eco Mart – MERN E-Commerce Website
 
+[![CI](https://github.com/manishjha10/MERN_ECO_MART/actions/workflows/ci.yml/badge.svg)](https://github.com/manishjha10/MERN_ECO_MART/actions/workflows/ci.yml)
+
 Eco Mart is a **full-stack e-commerce web application** built using the **MERN stack**.  
 The application provides a simple and user-friendly shopping experience where users can browse products, filter products by category, view product details, manage their cart, and place orders.
 
-The project also includes an **admin dashboard** for managing products,categories, customers, orders, inventory, and other store operations.
+The project also includes an **admin dashboard** for managing products, categories, customers, orders, inventory, and other store operations.
 
 ---
 
@@ -23,7 +25,7 @@ Eco Mart is designed as a modern online shopping platform supporting multiple pr
 - 👜 Handbags
 - 🎒 Backpacks
 
-The project demonstrates the implementation of a complete e-commerce workflow using React on the frontend and Node.js, Express.js, and MongoDB on the backend.
+The project demonstrates the implementation of a complete e-commerce workflow using React on the frontend and Node.js, Express.js, and MongoDB on the backend. A GitHub Actions CI pipeline automatically checks the frontend and backend on every push and pull request.
 
 ---
 
@@ -99,7 +101,7 @@ The admin panel provides centralized management of the e-commerce platform.
 
 The home page contains the navigation bar, promotional banner, product sections, shopping options, cart, search, and user account controls.
 
-![Eco Mart Home Page](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191147.png)
+![Eco Mart Home Page](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191147.png?raw=true)
 
 ---
 
@@ -107,7 +109,7 @@ The home page contains the navigation bar, promotional banner, product sections,
 
 Users can select a category and browse the available products. Each product card displays the product image, name, price, rating, reviews, and a **View Details** button.
 
-![Jackets Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191310.png)
+![Jackets Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191310.png?raw=true)
 
 ---
 
@@ -115,14 +117,15 @@ Users can select a category and browse the available products. Each product card
 
 Products can be displayed category-wise, making it easier for users to find products based on their requirements.
 
-![T-Shirt Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191229.png)
+![T-Shirt Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191229.png?raw=true)
 
 ---
 
 ### 🔥 Trending Products
 
 The application provides a **Trending Now** section to highlight selected products.
-![Trending Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191207.png).
+
+![Trending Products](https://github.com/manishjha10/Certificates/blob/Phots_Eco_Mart_Wensite/Screenshot%202026-10-03%20191207.png?raw=true)
 
 ---
 
@@ -156,12 +159,21 @@ The application provides a **Trending Now** section to highlight selected produc
 - Botpress – AI chatbot
 - Email service – User/admin notifications
 
+### DevOps
+
+- Git & GitHub
+- GitHub Actions – CI pipeline
+
 ---
 
 ## 🏗️ Project Architecture
 
 ```text
 Eco-Mart
+│
+├── .github
+│   └── workflows
+│       └── ci.yml
 │
 ├── frontend
 │   ├── src
@@ -225,6 +237,32 @@ Backend
    ├── Razorpay   → Payments
    └── Botpress   → Chatbot
 ```
+
+---
+
+## 🔁 CI Pipeline (GitHub Actions)
+
+The repository uses a **GitHub Actions** workflow (`.github/workflows/ci.yml`) that runs automatically on every push to `main` or `add-ci` and on every pull request.
+
+```text
+Push / Pull Request
+        │
+        ▼
+GitHub Actions (ubuntu-latest, Node 20)
+        │
+        ├── frontend job
+        │     ├── Checkout code
+        │     ├── Install dependencies (npm ci)
+        │     └── Build the app (npm run build)
+        │
+        └── backend job
+              ├── Checkout code
+              └── Install dependencies (npm ci)
+```
+
+- The **frontend job** checks that the React + Vite app installs and builds without errors.
+- The **backend job** checks that the Node.js backend dependencies install correctly.
+- The status badge at the top of this README shows whether the latest run passed.
 
 ---
 
@@ -402,8 +440,8 @@ Botpress is used for chatbot integration.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd eco-mart
+git clone https://github.com/manishjha10/MERN_ECO_MART.git
+cd MERN_ECO_MART
 ```
 
 ### 2. Install Frontend Dependencies
@@ -422,6 +460,9 @@ cd backend
 npm install
 ```
 
+### 4. Environment Variables
+
+Create a `.env` file inside the `backend` folder with your own values (MongoDB URI, JWT secret, Cloudinary, Razorpay keys, etc.). Never commit the `.env` file to GitHub.
 
 ### Start Backend
 
@@ -536,6 +577,7 @@ Through this project, I worked with:
 - Order management
 - Deployment using Vercel and Render
 - Git and GitHub
+- Setting up a CI pipeline with GitHub Actions
 
 ---
 
@@ -543,6 +585,8 @@ Through this project, I worked with:
 
 Possible future improvements include:
 
+- Containerizing the app with Docker
+- Automated deployment (CD) from the CI pipeline
 - Advanced product recommendation system
 - AI-based product recommendations
 - Advanced analytics dashboard
@@ -563,7 +607,7 @@ B.Tech Computer Science Engineering
 
 ### Technologies
 
-`React` `Node.js` `Express.js` `MongoDB` `Redux` `JavaScript` `REST API` `Cloudinary` `Razorpay`
+`React` `Node.js` `Express.js` `MongoDB` `Redux` `JavaScript` `REST API` `Cloudinary` `Razorpay` `GitHub Actions`
 
 ---
 
